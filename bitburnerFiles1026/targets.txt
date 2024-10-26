@@ -1,0 +1,6 @@
+Weak target: harakiri-sushi
+SSH target: iron-gym
+FTP target: the-hub
+SMTP target: rho-construction
+HTTP target: global-pharm
+SQL target: deltaone
