@@ -72,24 +72,24 @@ export async function main(ns) {
 	}
 
 	// start autoinfil
-	ns.exec("autoinfiltrate.js", HOME, 1, "--quiet");
+	ns.exec("misc/autoinfiltrate.js", HOME, 1, "--quiet");
 
 	// start backdooring faction servers to get invites
-	ns.print("Running milestones.js");
-	ns.scriptKill("milestones.js", HOME);
-	ns.exec("milestones.js", HOME);
+	ns.print("Running start/milestones.js");
+	ns.scriptKill("start/milestones.js", HOME);
+	ns.exec("start/milestones.js", HOME);
 
 	// start augment monitor
-	ns.print("Running augments.js");
-	ns.scriptKill("augments.js", HOME);
-	ns.exec("augments.js", HOME);
+	ns.print("Running start/augments.js");
+	ns.scriptKill("start/augments.js", HOME);
+	ns.exec("start/augments.js", HOME);
 
 	// start home monitor
 	// upgrades ram and cores
 	// joins factions
-	ns.print("Running home.js");
-	ns.scriptKill("home.js", HOME);
-	ns.exec("home.js", HOME);
+	ns.print("Running start/home.js");
+	ns.scriptKill("start/home.js", HOME);
+	ns.exec("start/home.js", HOME);
 
 	// too expensive
 	if (ns.getPlayer().money > 200000) {
@@ -133,9 +133,9 @@ export async function main(ns) {
 			ns.scriptKill("hack.js", HOME);
 		}
 		// Run hacker.js
-		if (!(ns.scriptRunning("hwgw/hacker.js", HOME))) {
-			ns.print("Running hwgw/hacker.js");
-			ns.exec("hwgw/hacker.js", HOME);
+		if (!(ns.scriptRunning("start/hacker.js", HOME))) {
+			ns.print("Running start/hacker.js");
+			ns.exec("start/hacker.js", HOME);
 		}		
 
 		// too expensive
@@ -146,17 +146,17 @@ export async function main(ns) {
 
 		if (ports[i] == "NUKE.exe") {
 		} else if (ports[i] == "BruteSSH.exe") {
-			// ns.print("Running hacknet2.js");
-			// ns.scriptKill("hacknet2.js", HOME);
-			// ns.exec("hacknet2.js", HOME, 1, debug);
+			// ns.print("Running start/hacknet2.js");
+			// ns.scriptKill("start/hacknet2.js", HOME);
+			// ns.exec("start/hacknet2.js", HOME, 1, debug);
 		} else if (ports[i] == "FTPCrack.exe") {
 			ns.print("Running the server purchasing script");
-			ns.scriptKill("servers.js", HOME);
-			ns.exec("servers.js", HOME, 1, 512, "max", false, debug);
+			ns.scriptKill("start/buyservers.js", HOME);
+			ns.exec("start/buyservers.js", HOME, 1, 512, "max", false, debug);
 		} else if (ports[i] == "RelaySMTP.exe" && ns.stock.has4SDataTIXAPI()) {
 			ns.print("Running the stocker script");
-			ns.scriptKill("stocks.js", HOME);
-			ns.exec("stocks.js", HOME, 1);
+			ns.scriptKill("stocks/stocks.js", HOME);
+			ns.exec("stocks/stocks.js", HOME, 1);
 		}
 	}
 
@@ -194,22 +194,22 @@ export async function main(ns) {
 			// too expensive
 			buyall(ns);
 			ns.print("Running the server upgrading script");
-			ns.scriptKill("servers.js", HOME);
-			ns.exec("servers.js", HOME, 1, 2048, "max", true, debug);
+			ns.scriptKill("start/buyservers.js", HOME);
+			ns.exec("start/buyservers.js", HOME, 1, 2048, "max", true, debug);
 		}
 		if (ns.serverExists("pserv-00")) {
 			if (ns.getPurchasedServerUpgradeCost("pserv-00", ns.getServerMaxRam("pserv-00") * 2) < 1000000000) {
-				if (ns.isRunning("servers.js", HOME, 1, 512, "max", false, debug) || !ns.isRunning("servers.js", HOME, 1, 2048, "max", true, debug)) {
-					ns.scriptKill("servers.js", HOME);
-					ns.exec("servers.js", HOME, 1, 2048, "max", true, debug);
+				if (ns.isRunning("start/buyservers.js", HOME, 1, 512, "max", false, debug) || !ns.isRunning("start/buyservers.js", HOME, 1, 2048, "max", true, debug)) {
+					ns.scriptKill("start/buyservers.js", HOME);
+					ns.exec("start/buyservers.js", HOME, 1, 2048, "max", true, debug);
 				}
 			}
 		}
 		if (m < 4) {
 			// start backdooring faction servers to get invites
 			ns.print("Running milestones.js");
-			ns.scriptKill("milestones.js", HOME);
-			ns.exec("milestones.js", HOME);
+			ns.scriptKill("start/milestones.js", HOME);
+			ns.exec("start/milestones.js", HOME);
 			m++;
 		}
 		await ns.sleep(60000);

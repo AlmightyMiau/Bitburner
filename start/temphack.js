@@ -20,3 +20,6 @@ export async function main(ns) {
 	ns.getServerMaxMoney(target);
 	ns.getServerMoneyAvailable(target);
 }
+
+// hacks a server once
+

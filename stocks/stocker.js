@@ -43,7 +43,7 @@ export async function main(ns) {
 			if (ns.getServerMoneyAvailable(target) != 0) {
 				ns.print("bringing price down.");
 				while (ns.getServerMoneyAvailable(target) != 0) {
-					ns.exec("run.js", "home", 1, target, "temphack.js");
+					ns.exec("misc/run.js", "home", 1, target, "start/temphack.js");
 					await ns.sleep(5000);
 				}
 			}
@@ -68,7 +68,7 @@ export async function main(ns) {
 			if (ns.getServerMoneyAvailable(target) < maxmoney) {
 				ns.print("bringing price up.");
 				while (ns.getServerMoneyAvailable(target) < maxmoney) {
-					ns.exec("run.js", "home", 1, target, "tempgrow.js");
+					ns.exec("misc/run.js", "home", 1, target, "start/tempgrow.js");
 					await ns.sleep(5000);
 				}
 			}

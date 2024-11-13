@@ -10,22 +10,8 @@ export async function main(ns) {
 	}
 
     let debug = ns.args[1];
-	if (debug == true) {
-		ns.enableLog("weaken");
-		ns.enableLog("grow");
-		ns.enableLog("hack");
-		ns.enableLog("getServerSecurityLevel");
-		ns.enableLog("getServerMoneyAvailable");
-		ns.enableLog("getServerMaxMoney");
-		ns.enableLog("getServerMinSecurityLevel");
-	} else {
-		ns.disableLog("weaken");
-		ns.disableLog("grow");
-		ns.disableLog("hack");
-		ns.disableLog("getServerSecurityLevel");
-		ns.disableLog("getServerMoneyAvailable");
-		ns.disableLog("getServerMaxMoney");
-		ns.disableLog("getServerMinSecurityLevel");
+	if (debug == false) {
+		ns.disablelog("ALL");
 	}
 
 
@@ -49,3 +35,6 @@ export async function main(ns) {
 		}
 	}
 }
+
+// hacks a server endlessly
+
