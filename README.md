@@ -10,42 +10,42 @@
 ## start/
 | Script | Description |
 | ------ | ----------- |
-|**augbaseprice.txt**||
-|**augments.js**||
+|**augbaseprice.txt**|stores the base price of the `Neuroflux Govenor` augmentation after installing|
+|**augments.js**|buys augments as they are available|
 |**buyservers.js**|buys purachasable servers and upgrades them|
 |**hacker.js**|hacks every server|
 |**hacknet2.js**|hacknet manager that buys and upgrades hacknet nodes|
-|**home.js**||
-|**milestones.js**||
+|**home.js**|upgrades home ram and cores, and joins factions as available|
+|**milestones.js**|backdoors faction servers as available|
 |**root.js**|runs all .exe's on all servers, enabling hacking of them|
-|**tempgrow.js**||
-|**temphack.js**||
+|**tempgrow.js**|runs `ns.grow()` once on a target server|
+|**temphack.js**|runs `ns.hack()` once on a target server|
 
 ## batch/
 | Script | Description |
 | ------ | ----------- |
-|**chef.js**||
-|**batcher.js**||
-|**batch.js**||
-|**grow.js**||
-|**hack.js**||
-|**weaken.js**||
+|**chef.js**|runs `batcher.js` on a few set servers|
+|**batcher.js**|performs a hack-weaken-grow-weaken function with minimum downtime|
+|**batch.js**|executes a single batch of hack-weaken-grow-weaken|
+|**grow.js**|runs `ns.grow()` once on a target server|
+|**hack.js**|runs `ns.hack()` once on a target server|
+|**weaken.js**|runs `ns.weaken()` once on a target server|
 
 ## misc/
 | Script | Description |
 | ------ | ----------- |
 |**autoinfiltrate.js**|run to enable automatic infiltration of companies|
 |**delete.js**|deletes a currently owned server|
-|**install.js**||
-|**monitor.js**||
-|**route.js**||
+|**install.js**|installs augmentations and runs `start.js`|
+|**monitor.js**|monitors a server, player cash, or a batcher script|
+|**route.js**|displays the route to a server in the terminal|
 |**run.js**|runs a script on a server at the maximum threads possible|
-|**servers.txt**||
+|**servers.txt**|a list of all servers|
 |**target.js**|finds the target server with the most money for a given port level|
 |**targets.js**|finds all servers with money on them|
-|**targets.txt**||
+|**targets.txt**|list of servers with the most money for a given port level|
 |**test.js**||
-|**threads.js**||
+|**threads.js**|prints the number of threads needed to hack a server for the money available|
 
 ## stocks/
 | Script | Description |
@@ -53,9 +53,9 @@
 |**liquidate.js**|sells all stocks|
 |**maxprice.txt**||
 |**minprice.txt**||
-|**stocker.js**|buys and sells stocks|
+|**stocks.js**|Finds stocks that are increasing and runs `stocker.js` on them|
+|**stocker.js**||
 |**stockgains.txt**||
-|**stocks.js**||
 
 ## servers/
 6 txt files containing list of servers based on how many ports are needed to hack them
