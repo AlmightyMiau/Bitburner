@@ -1,5 +1,15 @@
 # README.md
 
+## folders
+|Folder|Description|
+|------|-----------|
+|**main**|Files used in multiple folders, or that should easily accessible|
+|**start**|Scripts that run automatically upon install|
+|**batch**|Set of scripts to use the hack-weaken-grow-weaken with minimal downtime|
+|**misc**|Set of files for use by user|
+|**stocks**|Scripts for buy, selling, and manipulating stocks|
+|**servers**|Lists of servers of each port level|
+
 ## main
 | Script | Description |
 | --------- | ----------|
