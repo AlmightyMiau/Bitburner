@@ -1,6 +1,6 @@
 /** @param {NS} ns */
 export async function main(ns) {
-	const sym = ns.args[0];
+	const symbol = ns.args[0];
 	const target = ns.args[1];
 	let manip = ns.args[2];
 	let debug = ns.args[3];
@@ -9,10 +9,10 @@ export async function main(ns) {
 	debug = true;
 	
 	const maxmoney = 0;
-	if (sym === undefined) {
+	if (symbol === undefined) {
 		ns.print("arg 0 is the stock symbol");
 		ns.exit();
-	} else if (sym == "--help" || sym == "help" || sym == "-h") {
+	} else if (symbol == "--help" || symbol == "help" || symbol == "-h") {
 		ns.tprint("\n script that buys stocks and sells high.\n 1st arg is the stock symbol.\n 2nd arg is the stock's server.\n 3rd arg is whether to hack and grow servers to manipulate stock prices.");
 		ns.exit();
 	}
@@ -33,7 +33,7 @@ export async function main(ns) {
 	let maxprice = Number(ns.read("maxprice.txt"));
 	const buyprice = minprice;
 	const sellprice = maxprice;
-	let shares = ns.stock.getMaxShares(sym);
+	let shares = ns.stock.getMaxShares(symbol);
 	//const minprice = ns.stock.
 	ns.disableLog("sleep");
 
@@ -49,21 +49,21 @@ export async function main(ns) {
 			}
 			// after price is down, buy max stock
 			// homemade place order command
-			if (ns.stock.getAskPrice(sym) > buyprice) {
+			if (ns.stock.getAskPrice(symbol) > buyprice) {
 				ns.print("Waiting for price to drop");
-				while (ns.stock.getAskPrice(sym) > buyprice) {
-					ns.print(Floor(ns.stock.getAskPrice(sym)));
+				while (ns.stock.getAskPrice(symbol) > buyprice) {
+					ns.print(Floor(ns.stock.getAskPrice(symbol)));
 					await ns.sleep(60000);
-					if (ns.stock.getAskPrice(sym) < minprice) {
-						minprice = ns.stock.getAskPrice(sym);
+					if (ns.stock.getAskPrice(symbol) < minprice) {
+						minprice = ns.stock.getAskPrice(symbol);
 						ns.write("minprice.txt", minprice, "w");
-					} else if (ns.stock.getBidPrice(sym) > maxprice) {
-						maxprice = ns.stock.getBidPrice(sym);
+					} else if (ns.stock.getBidPrice(symbol) > maxprice) {
+						maxprice = ns.stock.getBidPrice(symbol);
 						ns.write("maxprice.txt", maxprice, "w");
 					}
 				}
 			}
-			ns.stock.buyStock(sym, shares);
+			ns.stock.buyStock(symbol, shares);
 			// after bought, raise price with grow
 			if (ns.getServerMoneyAvailable(target) < maxmoney) {
 				ns.print("bringing price up.");
@@ -73,21 +73,21 @@ export async function main(ns) {
 				}
 			}
 			// after raising price, sell all stock
-			if (ns.stock.getBidPrice(sym) < sellprice) {
+			if (ns.stock.getBidPrice(symbol) < sellprice) {
 				ns.print("Waiting for price to increase");
-				while (ns.stock.getBidPrice(sym) < sellprice) {
-					ns.print(Floor(ns.stock.getBidPrice(sym)));
+				while (ns.stock.getBidPrice(symbol) < sellprice) {
+					ns.print(Floor(ns.stock.getBidPrice(symbol)));
 					await ns.sleep(60000);
-					if (ns.stock.getBidPrice(sym) > maxprice) {
-						maxprice = ns.stock.getBidPrice(sym);
+					if (ns.stock.getBidPrice(symbol) > maxprice) {
+						maxprice = ns.stock.getBidPrice(symbol);
 						ns.write("maxprice.txt", maxprice, "w");
-					} else if (ns.stock.getAskPrice(sym) < minprice) {
-						minprice = ns.stock.getAskPrice(sym);
+					} else if (ns.stock.getAskPrice(symbol) < minprice) {
+						minprice = ns.stock.getAskPrice(symbol);
 						ns.write("minprice.txt", minprice, "w");
 					}
 				}
 			}
-			ns.stock.sellStock(sym, shares);
+			ns.stock.sellStock(symbol, shares);
 			//repeat after 10 seconds
 			await ns.sleep(10000);
 		}
@@ -95,13 +95,13 @@ export async function main(ns) {
 		let bought = 0;
 		if (bought == 0) {
 
-			if (debug) {log(ns, sym);}
+			if (debug) {log(ns, symbol);}
 			while (bought == 0) {
 				// if price is going up
-				if (debug) {ns.print("Forecast for ", sym, ": ", (ns.stock.getForecast(sym)).toFixed(2));}
-				if (ns.stock.getForecast(sym) > 0.5) {
-					ns.stock.buyStock(sym, shares);
-					pricebought = ns.stock.getAskPrice(sym) * shares;
+				if (debug) {ns.print("Forecast for ", symbol, ": ", (ns.stock.getForecast(symbol)).toFixed(2));}
+				if (ns.stock.getForecast(symbol) > 0.5) {
+					ns.stock.buyStock(symbol, shares);
+					pricebought = ns.stock.getAskPrice(symbol) * shares;
 					bought++;
 					break;
 				}
@@ -111,10 +111,10 @@ export async function main(ns) {
 			if (debug) {ns.print("Waiting for forecast to show going down.");}
 			while (bought == 1) {
 				// log window messages
-				if (debug) {log(ns, sym);}
-				if (ns.stock.getForecast(sym) < 0.5) {
-					ns.stock.sellStock(sym, shares);
-					pricesold = ns.stock.getBidPrice(sym) * shares;
+				if (debug) {log(ns, symbol);}
+				if (ns.stock.getForecast(symbol) < 0.5) {
+					ns.stock.sellStock(symbol, shares);
+					pricesold = ns.stock.getBidPrice(symbol) * shares;
 					bought--;
 					await ns.sleep(1000);
 					ns.exit();
@@ -126,10 +126,10 @@ export async function main(ns) {
 	}
 }
 
-function log(ns, sym) {
+function log(ns, symbol) {
 	ns.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	ns.print("Forecast for ", sym, ": ", (ns.stock.getForecast(sym)).toFixed(2));
-	ns.print("Price of ", sym, ": ", ns.stock.getPrice(sym));
+	ns.print("Forecast for ", symbol, ": ", (ns.stock.getForecast(symbol)).toFixed(2));
+	ns.print("Price of ", symbol, ": ", ns.stock.getPrice(symbol));
 }
 
 function gains(ns, pricebought, pricesold) {
@@ -139,6 +139,6 @@ function gains(ns, pricebought, pricesold) {
 	ns.write("stockgains.js", total, "w");
 }
 // round forecast to 1 decimal
-// shorten forecast message to *sym*: *number*
+// shorten forecast message to *symbol*: *number*
 // remove previous messages by adding a bunch of \n
 // add a price change message

@@ -22,4 +22,4 @@ export async function main(ns) {
 }
 
 // look through all the stocks to see what is going up, and run stocker on whatever is
-// 
+
