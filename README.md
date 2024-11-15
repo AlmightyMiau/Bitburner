@@ -51,11 +51,11 @@
 | Script | Description |
 | ------ | ----------- |
 |**liquidate.js**|sells all stocks|
-|**maxprice.txt**||
-|**minprice.txt**||
+|**maxprice.txt**|Holds the highest value of a stock|
+|**minprice.txt**|Holds the lowest value of a stock|
 |**stocks.js**|Finds stocks that are increasing and runs `stocker.js` on them|
-|**stocker.js**||
-|**stockgains.txt**||
+|**stocker.js**|Monitors a single stock, manipulates prices by growing server, and sells high|
+|**stockgains.txt**|Holds the gains from selling stocks|
 
 ## servers/
 6 txt files containing list of servers based on how many ports are needed to hack them
